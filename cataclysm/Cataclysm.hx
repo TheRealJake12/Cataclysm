@@ -14,10 +14,14 @@ class Cataclysm
 	public var logPath:String = null;
 	public var logTitle:String = null;
 	public var startTime:Date = null;
-	public var onApplicationCrash:Void -> Void;
-	public function new(path:String = null, title:String = null)
+	public var onApplicationCrash:Void -> Void = null;
+	public function new()
 	{
-		print("Cataclysm Crash Handler Initiated.");
+		print("Thanks For Using Cataclysm.");
+	}
+
+	public function setup(path:String = null, title:String = null)
+	{
 		startTime = Date.now();
 		logPath = './$path' ?? './crashlogs';
 		logTitle = title ?? 'Cataclysm';

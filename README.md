@@ -23,8 +23,8 @@ Highly Informative Crash Logger That Includes The Following Information:
 First, Ensure Your [Haxe](https://haxe.org/) Version Is Atleast `4.3.6` Or Higher.
 Next, Make Sure These Libraries Are Moderately Up-To-Date.
 ```
-openfl >= 9.3.4
-lime >= 8.1.2
+openfl >= 9.4.1
+lime >= 8.2.2
 hxcpp >= 4.3.2
 ```
 
@@ -58,7 +58,8 @@ import cataclysm.Cataclysm;
 Then After Your App Has Initialized, Add The Following:
 
 ```haxe
-var crash_handler:Cataclysm = new Cataclysm("crashlogs", "AppName");
+var crash_handler:Cataclysm = new Cataclysm();
+crash_handler.setup("crashlogs", "AppName");
 ```
 
 The First Argument Of `new` Is Where The Logs Are Saved. `crashlogs` Will Output The Logs At `bin/crashlogs`.
@@ -71,7 +72,8 @@ There Is Also An Optional Callback `onApplicationCrash` That You Can Call Whenev
 It Works As Following:
 
 ```haxe
-var crash_handler:Cataclysm = new Cataclysm("logs/crashlogs", "MyApp");
+var crash_handler:Cataclysm = new Cataclysm();
+crash_handler.setup("crashlogs", "AppName");
 crash_handler.onApplicationCrash = function()
 {
 trace("The App Has Crashed. Check The Logs Folder For More Info...");
