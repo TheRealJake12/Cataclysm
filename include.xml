@@ -2,9 +2,5 @@
 <project xmlns="http://lime.openfl.org/project/1.0.4"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://lime.openfl.org/project/1.0.4 http://lime.openfl.org/xsd/project-1.0.4.xsd">
-	<section if="cpp">
-		<haxedef name="HXCPP_CHECK_POINTER" />
-		<haxedef name="HXCPP_STACK_LINE" />
-		<haxedef name="HXCPP_STACK_TRACE" />
-	</section>
+	<haxedef name="HXCPP_CHECK_POINTER" />
 </project>
