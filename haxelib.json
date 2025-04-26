@@ -1,0 +1,21 @@
+{
+	"name": "cataclysm",
+	"url": "https://github.com/TheRealJake12/Cataclysm.git",
+	"license": "MIT",
+	"tags": [
+		"openfl",
+		"hxcpp",
+		"cpp",
+		"crashlogger"
+	],
+	"description": "Haxe & C++ Crashlogger For OpenFL ",
+	"version": "1.0.0",
+	"releasenote": "Initial Release",
+	"contributors": [
+		"therealjake_12"
+	],
+	"dependencies": {
+		"openfl": "",
+		"hxcpp": ""
+	}
+}

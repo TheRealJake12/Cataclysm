@@ -35,17 +35,21 @@ In Your `Project.xml`, Add The Haxelib Define.
 `<haxelib name="cataclysm"/>`
 
 ## NOTICE
-For The Most Debug Information, You'll Need To Define These.
 
-**THERE ARE SOME PERFORMANCE DOWNSIDES TO USING THESE.**
+**THERE ARE SOME PERFORMANCE DOWNSIDES TO USING CATACLYSM.**
 
-`<haxedef name="HXCPP_STACK_LINE" />`
+Due To HXCPP Being Funny With Error Handling, Cataclysm Defines The Following To Try And Catch Errors.
 
-**Should Cataclysm Report Line Numbers In The Stack. This Is The Slowest Between The Two.**
+```xml
+<haxedef name="HXCPP_CHECK_POINTER" />
+<haxedef name="HXCPP_CATCH_SEGV" />
+<haxedef name="HXCPP_STACK_LINE" />
+<haxedef name="HXCPP_STACK_TRACE" />
+<haxedef name="openfl-enable-handle-error" />
+```
 
-`<haxedef name="HXCPP_STACK_TRACE"/>`
+It Shouldn't Slow Things Down Too Much Though.
 
-**Should Cataclysm Report The Stack Traces. This Is Faster Than The Stack Line.**
 
 ### Initializing Cataclysm
 
@@ -62,7 +66,7 @@ var crash_handler:Cataclysm = new Cataclysm();
 crash_handler.setup("crashlogs", "AppName");
 ```
 
-The First Argument Of `new` Is Where The Logs Are Saved. `crashlogs` Will Output The Logs At `bin/crashlogs`.
+The First Argument Of `setup` Is Where The Logs Are Saved. `crashlogs` Will Output The Logs At `bin/crashlogs`.
 The Second Argument Is The Title Of The Log *(In Addition To The Date And Time Of The Crash)*. 
 
 An Example Of This Would Be `Cataclysm-Crashlog_2025-04-24_19-39-46`.

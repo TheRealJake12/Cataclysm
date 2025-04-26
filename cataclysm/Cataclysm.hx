@@ -27,11 +27,9 @@ class Cataclysm
 		logTitle = title ?? 'Cataclysm';
 		print("Logging Path = " + logPath + " | Title = " + logTitle);
 		CatUtil.createDirIfGone(logPath);
-		#if (openfl && desktop)
+		#if (openfl)
 		openfl.Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
 		print("You Are Using OpenFL. All Should Function As Intended.");
-		#else
-		print("You Are Not Using OpenFL. Implement Your Own On Crash Logic Please.");
 		#end
 	}
 
@@ -40,10 +38,11 @@ class Cataclysm
 	{
 		print('Crash Caught. Error Type : ${e.type}');
 		print('Error Message : ${e.error}');
+		final stack:Array<String> = [];
+		#if HXCPP_STACK_TRACE
+		stack.push(CallStack.toString(CallStack.exceptionStack(true)));
+		#end
 		var dateNow:String = Date.now().toString().replace(" ", "_");
-		print(dateNow);
-
-		final callStack:Array<StackItem> = CallStack.exceptionStack(true);
 		var message:String = '${logTitle}\n[';
 		message+= "\nApp Title: " + openfl.Lib.application.meta.get('file');
 		message+= "\nApp Company: " + openfl.Lib.application.meta.get('company');
@@ -55,16 +54,8 @@ class Cataclysm
 		message += "\n]\nCrash Report\n[";
 		message += "\nError Type: " + e.error;
 		message += "\nError Message: " + e.type; // weird shit
-		message += "\nStack Log: \n";
-		for (stackItem in callStack)
-		{
-			switch (stackItem)
-			{
-				case FilePos(s, file, line, column):
-					message += file + " (line " + line + ")\n";
-				default:	
-			}
-		}
+		message += "\nStack Log:";
+		message+= Std.string(stack).replace("[", "").replace("]", "");
 		message += "\n]";
 		print('$message');
 		dateNow = dateNow.replace(":", "-");
@@ -82,7 +73,7 @@ class Cataclysm
 	}
 	#end
 
-	private function print(m:String)
+	private function print(m:Dynamic)
 	{
 		#if CATACLYSM_DEBUG
 		return Sys.println('[Catalysm] | $m');
